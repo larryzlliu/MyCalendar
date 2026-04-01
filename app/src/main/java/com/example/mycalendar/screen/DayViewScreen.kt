@@ -36,7 +36,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycalendar.data.model.Event
 import com.example.mycalendar.viewmodel.DayUiState
 import com.example.mycalendar.viewmodel.DayViewModel
@@ -51,11 +51,11 @@ private val TimeColumnWidth = 52.dp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DayViewScreen(
-    date: LocalDate,
     onBack: () -> Unit,
-    viewModel: DayViewModel = viewModel(factory = DayViewModel.Factory(date))
+    viewModel: DayViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val date = viewModel.date
     val events = if (uiState is DayUiState.Displaying) (uiState as DayUiState.Displaying).events
                  else emptyList()
 

@@ -37,14 +37,12 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.activity.ComponentActivity
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycalendar.data.model.Event
 import com.example.mycalendar.viewmodel.CalendarUiState
 import com.example.mycalendar.viewmodel.CalendarUiState.Displaying
@@ -58,7 +56,7 @@ import java.util.Locale
 fun MonthViewScreen(
     onDaySelected: (LocalDate) -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: CalendarViewModel = viewModel()
+    viewModel: CalendarViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
     CalendarScreen(

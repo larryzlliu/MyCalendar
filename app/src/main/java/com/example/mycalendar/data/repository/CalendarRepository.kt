@@ -3,8 +3,11 @@ package com.example.mycalendar.data.repository
 import com.example.mycalendar.data.model.Event
 import java.time.LocalDate
 import java.time.LocalTime
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class CalendarRepository {
+@Singleton
+class CalendarRepository @Inject constructor() {
 
     private val events = listOf(
         Event(

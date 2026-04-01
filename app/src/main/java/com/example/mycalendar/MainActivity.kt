@@ -2,6 +2,7 @@ package com.example.mycalendar
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,7 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mycalendar.screen.DayViewScreen
 import com.example.mycalendar.screen.MonthViewScreen
 import com.example.mycalendar.ui.theme.MyCalendarTheme
-import java.time.LocalDate
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,12 +32,8 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                     }
-                    composable("day/{date}") { backStackEntry ->
-                        val date = LocalDate.parse(
-                            backStackEntry.arguments?.getString("date") ?: return@composable
-                        )
+                    composable("day/{date}") {
                         DayViewScreen(
-                            date = date,
                             onBack = { navController.popBackStack() }
                         )
                     }

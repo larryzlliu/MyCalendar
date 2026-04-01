@@ -6,14 +6,17 @@ import com.example.mycalendar.data.model.Event
 import com.example.mycalendar.data.repository.CalendarRepository
 import com.example.mycalendar.viewmodel.CalendarUiState.Displaying
 import com.example.mycalendar.viewmodel.CalendarUiState.Loading
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+import javax.inject.Inject
 
-class CalendarViewModel(
-    private val repository: CalendarRepository = CalendarRepository()
+@HiltViewModel
+class CalendarViewModel @Inject constructor(
+    private val repository: CalendarRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<CalendarUiState>(Loading)
